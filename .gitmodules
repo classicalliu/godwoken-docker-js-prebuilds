@@ -1,3 +1,6 @@
 [submodule "godwoken-web3"]
 	path = godwoken-web3
 	url = https://github.com/nervosnetwork/godwoken-web3
+[submodule "godwoken-polyman"]
+	path = godwoken-polyman
+	url = https://github.com/RetricSu/godwoken-polyman.git
