@@ -7,4 +7,4 @@ RUN cd /godwoken-web3 && yarn && yarn workspace @godwoken-web3/godwoken tsc && y
 COPY godwoken-polyman/. /godwoken-polyman/.
 RUN cd /godwoken-polyman && yarn 
 
-EXPOSE 3000 6100 6101 8024
+EXPOSE 3000 6100 6101 6102 8024
