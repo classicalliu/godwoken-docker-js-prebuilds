@@ -13,6 +13,9 @@ build-push:
 	docker build . -t nervos/godwoken-js-prebuilds:$$VERSION ; \
 	docker push nervos/godwoken-js-prebuilds:$$VERSION
 
+test-jq:
+	docker run --rm -v `pwd`/godwoken-polyman:/app -w=/app nervos/godwoken-js-prebuilds:latest-test /bin/bash -c "jq -V"
+
 install-polyman:
 	docker run --rm -v `pwd`/godwoken-polyman:/app -w=/app nervos/godwoken-js-prebuilds:latest-test /bin/bash -c "yarn"
 
