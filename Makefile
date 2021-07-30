@@ -14,10 +14,12 @@ build-push:
 	docker push nervos/godwoken-js-prebuilds:$$VERSION
 
 test-jq:
-	docker run --rm -v `pwd`/godwoken-polyman:/app -w=/app nervos/godwoken-js-prebuilds:latest-test /bin/bash -c "jq -V"
+	docker run --rm nervos/godwoken-js-prebuilds:latest-test /bin/bash -c "jq -V"
 
-install-polyman:
-	docker run --rm -v `pwd`/godwoken-polyman:/app -w=/app nervos/godwoken-js-prebuilds:latest-test /bin/bash -c "yarn"
+test-polyman:
+	docker run --rm -v `pwd`/godwoken-polyman:/app nervos/godwoken-js-prebuilds:latest-test /bin/bash -c "cp -r godwoken-polyman/node_modules app/node_modules"
+	cd godwoken-polyman && yarn start
 
-install-web3:
-	docker run --rm -v `pwd`/godwoken-web3:/app -w=/app nervos/godwoken-js-prebuilds:latest-test /bin/bash -c "yarn; yarn workspace @godwoken-web3/godwoken tsc; yarn workspace @godwoken-web3/api-server tsc" ;
+test-web3:
+	docker run --rm -v `pwd`/godwoken-web3:/app nervos/godwoken-js-prebuilds:latest-test /bin/bash -c "cp -r godwoken-web3/node_modules app/node_modules" ;
+	cd godwoken-web3 && yarn workspace @godwoken-web3/godwoken tsc && yarn workspace @godwoken-web3/api-server start
