@@ -3,6 +3,10 @@ SHELL := /bin/bash
 build-components:
 	git submodule update --init --recursive
 
+build-ckb2021:
+	make build-components
+	docker build . -t nervos/godwoken-js-prebuilds:ckb2021 ; \
+
 build-push:
 	make build-components
 	@read -p "Please Enter New Image Tag: " VERSION ; \
